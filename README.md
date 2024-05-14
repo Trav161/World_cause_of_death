@@ -285,6 +285,7 @@ From
 Where country like '%Sri%Lanka%' and Causes LIKE '%selfharm%'
 ```
 ![sri lanka](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/23263505-d49e-4705-b27a-ae6527e35185)
+
 Here we can see how these rates have fluctuated throughout the years. As you can see there was a steep increase in suicidal deaths in the 1990s but since then, rates have decreased.
 
 - But what influenced this decrease? This made me think about the impact of policies within the country and whether they may have an effect.
@@ -294,7 +295,7 @@ In the 1990s, Sri Lanka implemented policies that restricted the availability of
 But this doesn't tell the full story.
 
 - To gain a bigger picture let's look at this progression in neighboring countries such as India
-  ![India self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/4dfc1b1b-8191-484f-b958-ce51dc2c402c)
+![India self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/4dfc1b1b-8191-484f-b958-ce51dc2c402c)
 
 In comparison to Sri Lanka, India's suicide death rate has steadily increased, boasting one of the highest rates in the world. Like Sri Lanka, economic instability, poverty, and unemployment can contribute to heightened stress levels and mental health issues, increasing the risk of suicide. To address these issues, mental health access is essential in getting people the help they need. [However, according to my research, access to mental health care is sparse, with over 75% of the population with mental health disorders not receiving treatment.](https://speakingofmedicine.plos.org/2023/05/25/mind-matters-indias-mental-health-budget-crisis/)
 
@@ -332,16 +333,18 @@ Group by c.Country,c.Causes,g.Globalavgdeaths
 order by DifferencefromGlobalavg DESC
 ```
 Using this script we can choose what cause of death we want to investigate with our global averages.
-
 1) Alcohol use related deaths (Global averages)
+   
 ![alcohol global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/48fb0d2a-f278-4680-b256-1f4172c3707a)
 ![alcohol global 1](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/7c5b0f3b-d852-4ba2-945b-de183e4a1c19)
+
 When looking at Alcohol associated deaths, countries such as Ukraine were higher on the list which aligns with my prior research. However, I was surprised to see countries such as Nigeria so high compared to our global average.
 
 - But why is this the case? 
 [In a study, I found that the prevalence of alcohol related deaths may be attributed to its high population but also to policies that permit the consumption of illicit and locally made alcoholic beverages sold freely within the country. As a result, policy changes have been recommended such as tax increases on alcohol and reduction of advertisements.](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-019-7139-9) However, the implementation of these policies has been challenging in Nigeria. Culturally, alcohol is seen as a celebratory drink and promoted as such. Additionally, other health challenges often take precedence, which also contributes to lower allocation of funds used on alcohol policy implementation.
 
 2) Drug use related deaths (Global averages)
+   
 ![drug global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/181916e2-6ea2-4d53-b717-2781f5bae560)
 
 Here I thought it would be interesting to explore drug use related deaths in Iran, which are disproportionately higher than the global average. With this information, I was able to see that drug related deaths are higher in Iran in comparison to larger continental regions such as Latin America and the Caribbean during the same period (1990–2019).
@@ -354,6 +357,7 @@ Geographically, Iran borders Pakistan and Afghanistan that also have rates highe
 [Politically, Iran has placed strict laws on drug crimes, resulting in life imprisonment or death if caught with 30 grams of Heroin, Morphine, Cocaine, LSD, Methamphetamine, and other similar drugs.](https://www.hrw.org/news/2011/08/05/dont-praise-irans-war-drugs)Whilst lower amounts of funding are placed on harm reduction actions such as needle exchange programs and methadone treatment. This lack of funding could also be a contributor to the number we see today. The intersection of culture and politics in Iran shapes its approach to drug use. While cultural norms discourage substance abuse, strict political laws reflect a zero-tolerance stance. This divergence highlights the challenge of addressing drug-related issues, emphasizing the need to harmonize cultural beliefs with effective public health interventions.
 
 3) Self Harm/Suicidal related deaths (Global averages)
+   
  ![self harm global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/760367f4-d6ae-4598-bbfb-290baffd38ab)
   
 Here I wanted to explore Japan's suicidal rates being one of the smallest countries on this list. According to my research, Japan have historically [honored the act of suicide](https://www.nippon.com/en/japan-topics/g02268/) in certain circumstances. [Additionally, there have been rising suicide rates among office workers and employees attributed to increased job pressures, longer work hours, and fewer holidays and sick days. This phenomenon, known as "karoshi" or "death by overwork," is prevalent in Japanese society. Alongside physical strain, mental stress from work can lead to "karojisatsu," or "overwork suicide."](https://www.wired.com/story/karoshi-japan-overwork-culture/)
@@ -361,7 +365,7 @@ Here I wanted to explore Japan's suicidal rates being one of the smallest countr
 - But what is being done to decrease the rate? 
 Japan has implemented 2 policies to combat this issue. [The General Principles of Suicide Prevention Policy (GPSPP) focuses on holistic approaches to suicide prevention, encompassing mental health support, public awareness campaigns, and community engagement. In contrast, the Jisatsu Taisaku Kihonn Hou, or suicide prevention law in Japan, is a legislative measure aimed at promoting early detection, intervention, and support for individuals at risk of suicide, emphasizing collaboration between healthcare, education, and government sectors. Since their implementation in 2006, suicide rates within the country have reduced. Looking at the progress made with this policy could promote the implementation of similar renditions in other countries at increasing rates.](https://www.cambridge.org/core/journals/bjpsych-open/article/impact-of-the-japanese-governments-general-principles-of-suicide-prevention-policy-on-youth-suicide-from-2007-to-2022/316001A33A9A58E288369FD7C87A66AB)
 
-### What did I learn ?
+### What did I learn
 Through this comprehensive analysis of global mortality trends, several key insights have emerged:
 
 1) Complexity of Mortality Dynamics: Mortality patterns are influenced by a myriad of factors, including socio-economic conditions, cultural norms, and healthcare systems. Understanding these complexities is crucial for devising effective interventions.
