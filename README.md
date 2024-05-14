@@ -33,7 +33,7 @@ The downloaded csv should be named "annual-number-of-deaths-by-cause". The datas
 - Next step will be to upload the csv file into Microsoft SQL Server
 
 ### Data Transformation:
-Change Table name to Cdeath from annual-number-of-deaths-by-cause: I did this to help keep my table name short and for ease of use.
+Change Table name to Cdeath from "annual-number-of-deaths-by-cause": I did this to help keep my table name short and for ease of use.
 So lets take a look at the data:
 ```sql
 Select *
