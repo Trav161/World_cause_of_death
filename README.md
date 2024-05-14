@@ -1,6 +1,15 @@
 # Project SQL: Deep Exploration of Global Causes of Death (1990–2019)
 
-![Visualization]()
+
+## Table of Contents
+
+- [Goal of this Project](#goal-of-this-project)
+- [Data source](#data-source)
+- [Tools used](#tools-used)
+- [Data Transformation](#data-transformation)
+- [Analysis](#Analysis)
+- [What did I learn?](#What-did-I-learn?)
+- [Conclusion](#Conclusion)
 
 ### Goal of this project:
 The primary goal was to identify and analyze the leading causes of death globally between 1990-2019. Specifically, I aimed to explore patterns and trends related to cardiovascular diseases, drug and alcohol-related deaths, and suicide rates. Additionally, I sought to understand the disparities between countries and regions, considering factors such as culture, politics, and economic conditions.
@@ -224,7 +233,7 @@ This allowed me to see which countries have alcohol use related deaths at a rank
 
 - This gave me the opportunity to dig deeper. Why were these countries dealing with high rates of alcohol use related deaths?
 
-A pattern was emerging. I found here that there was a high prevalence of Alcohol use related deaths in European countries. For example, Ukraine ranks 8 for all overall deaths between 1990–2019. As a comparison, Alcohol use disorder deaths rank as 25 for all countries during this timeframe. This is also in support of literature which states that European countries rank amongst the highest alcohol drinkers in the world in comparison to other countries in the world. Further contributing to the results and the elevated numbers.
+A pattern was emerging. I found here that there was a high prevalence of Alcohol use related deaths in European countries. For example, Ukraine ranks 8 for all overall deaths between 1990–2019. As a comparison, Alcohol use disorder deaths rank as 25 for all countries during this timeframe. [This is also in support of literature which states that European countries rank amongst the highest alcohol drinkers in the world in comparison to other countries in the world.](https://www.euronews.com/health/2023/06/30/so-long-dry-january-which-country-drinks-the-most-alcohol-in-europe) Further contributing to the results and the elevated numbers.
 
 2) Drug use related deaths (World Ranking)
 ```sql
@@ -232,7 +241,7 @@ Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
 This allowed me to see which countries have drug use related deaths at a rank lower or equal to 15.
 
-With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma. To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
+With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. [When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma.](https://www.sdf.org.uk/blog-poverty-is-the-root-of-scotlands-fatal-drug-overdose-crisis/) To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
 
 3) Self Harm/Suicidal related deaths (World Ranking)
    ```sql
@@ -240,7 +249,7 @@ With these initial findings, It did not surprise me to the USA high on the list.
    ```
    This allowed me to see which countries have self harm related deaths at a rank lower than 15.
 
-With these results I was surprised to see Sri Lanka so high on the list, thus, I needed to delve further. Upon my research, large contributors to the suicide rates within the country were the result of pesticide self-poisoning.
+With these results I was surprised to see Sri Lanka so high on the list, thus, I needed to delve further. [Upon my research, large contributors to the suicide rates within the country were the result of pesticide self-poisoning.](https://centrepsp.org/media/news/sri-lankan-suicide-rate-stable-during-pandemic)
 
 But why is this the case? 
 Like many low-income countries, Suicide rates are often the result of societal issues such as poverty and unemployment, leading to an increase in depression/anxiety which can fuel suicidal thoughts. Rural farming communities also increase overall access to lethal pesticides. In the same article, reports suggest that there was not an increase in suicidal deaths during the pandemic. While this data set only contains results up to 2019, we are somewhat limited.
@@ -248,8 +257,9 @@ Like many low-income countries, Suicide rates are often the result of societal i
 - What countries have fewer overall suicidal deaths?
 ```sql
 Where RankNumber >=11 and Causes LIKE '%Selfharm%'
+```
 
-By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives. Further emphasizing how culture and religion may impact mortality rates in different regions.
+By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. [Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178353/) Further emphasizing how culture and religion may impact mortality rates in different regions.
 
 - But what if we try to gain an idea of how these rates have progressed over time?
 Let's take a look at Sri Lanka's suicidal rates from 1990 and onwards
@@ -269,7 +279,7 @@ In the 1990s, Sri Lanka implemented policies that restricted the availability of
 But this doesn't tell the full story.
 
 - To gain a bigger picture let's look at this progression in neighboring countries such as India
-In comparison to Sri Lanka, India's suicide death rate has steadily increased, boasting one of the highest rates in the world. Like Sri Lanka, economic instability, poverty, and unemployment can contribute to heightened stress levels and mental health issues, increasing the risk of suicide. To address these issues, mental health access is essential in getting people the help they need. However, according to my research, access to mental health care is sparse, with over 75% of the population with mental health disorders not receiving treatment.
+In comparison to Sri Lanka, India's suicide death rate has steadily increased, boasting one of the highest rates in the world. Like Sri Lanka, economic instability, poverty, and unemployment can contribute to heightened stress levels and mental health issues, increasing the risk of suicide. To address these issues, mental health access is essential in getting people the help they need. [However, according to my research, access to mental health care is sparse, with over 75% of the population with mental health disorders not receiving treatment.](https://speakingofmedicine.plos.org/2023/05/25/mind-matters-indias-mental-health-budget-crisis/)
 
 - But why is this the case?
 The National Mental Health Programme (NMHP) was implemented in 1982 to integrate mental health care with primary healthcare services. However, despite increases in funding to address treatment gaps, overall utilization of mental health services has been low. This means that today, less than 1% of the country's total budget for health is allocated to mental health. Considerable, low despite the increase in suicidal rates. Cultural factors between the 2 countries may also prevent individuals from seeking help or discussing their struggles openly, increasing the overall risk.
@@ -311,7 +321,7 @@ Using this script we can choose what cause of death we want to investigate with 
 When looking at Alcohol associated deaths, countries such as Ukraine were higher on the list which aligns with my prior research. However, I was surprised to see countries such as Nigeria so high compared to our global average.
 
 - But why is this the case? 
-In a study, I found that the prevalence of alcohol related deaths may be attributed to its high population but also to policies that permit the consumption of illicit and locally made alcoholic beverages sold freely within the country. As a result, policy changes have been recommended such as tax increases on alcohol and reduction of advertisements. However, the implementation of these policies has been challenging in Nigeria. Culturally, alcohol is seen as a celebratory drink and promoted as such. Additionally, other health challenges often take precedence, which also contributes to lower allocation of funds used on alcohol policy implementation.
+[In a study, I found that the prevalence of alcohol related deaths may be attributed to its high population but also to policies that permit the consumption of illicit and locally made alcoholic beverages sold freely within the country. As a result, policy changes have been recommended such as tax increases on alcohol and reduction of advertisements.](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-019-7139-9) However, the implementation of these policies has been challenging in Nigeria. Culturally, alcohol is seen as a celebratory drink and promoted as such. Additionally, other health challenges often take precedence, which also contributes to lower allocation of funds used on alcohol policy implementation.
 
 2) Drug use related deaths (Global averages)
 
@@ -322,14 +332,14 @@ But I had more questions, as I previously stated culture and religion can often 
 Geographically, Iran borders Pakistan and Afghanistan that also have rates higher than the global average. It is also this proximity to Afghanistan that is seen to be one of the drivers of the opioid crisis in Iran. Afghanistan is the largest producer of opium in the world. Resulting in Iran being a hot spot for drug trafficking.
 
  - So what's being done about this?
-Politically, Iran has placed strict laws on drug crimes, resulting in life imprisonment or death if caught with 30 grams of Heroin, Morphine, Cocaine, LSD, Methamphetamine, and other similar drugs. Whilst lower amounts of funding are placed on harm reduction actions such as needle exchange programs and methadone treatment. This lack of funding could also be a contributor to the number we see today. The intersection of culture and politics in Iran shapes its approach to drug use. While cultural norms discourage substance abuse, strict political laws reflect a zero-tolerance stance. This divergence highlights the challenge of addressing drug-related issues, emphasizing the need to harmonize cultural beliefs with effective public health interventions.
+[Politically, Iran has placed strict laws on drug crimes, resulting in life imprisonment or death if caught with 30 grams of Heroin, Morphine, Cocaine, LSD, Methamphetamine, and other similar drugs.](https://www.hrw.org/news/2011/08/05/dont-praise-irans-war-drugs)Whilst lower amounts of funding are placed on harm reduction actions such as needle exchange programs and methadone treatment. This lack of funding could also be a contributor to the number we see today. The intersection of culture and politics in Iran shapes its approach to drug use. While cultural norms discourage substance abuse, strict political laws reflect a zero-tolerance stance. This divergence highlights the challenge of addressing drug-related issues, emphasizing the need to harmonize cultural beliefs with effective public health interventions.
 
 3) Self Harm/Suicidal related deaths (Global averages)
    
-Here I wanted to explore Japan's suicidal rates being one of the smallest countries on this list. According to my research, Japan have historically honored the act of suicide in certain circumstances. Additionally, there have been rising suicide rates among office workers and employees attributed to increased job pressures, longer work hours, and fewer holidays and sick days. This phenomenon, known as "karoshi" or "death by overwork," is prevalent in Japanese society. Alongside physical strain, mental stress from work can lead to "karojisatsu," or "overwork suicide."
+Here I wanted to explore Japan's suicidal rates being one of the smallest countries on this list. According to my research, Japan have historically [honored the act of suicide](https://www.nippon.com/en/japan-topics/g02268/) in certain circumstances. [Additionally, there have been rising suicide rates among office workers and employees attributed to increased job pressures, longer work hours, and fewer holidays and sick days. This phenomenon, known as "karoshi" or "death by overwork," is prevalent in Japanese society. Alongside physical strain, mental stress from work can lead to "karojisatsu," or "overwork suicide."](https://www.wired.com/story/karoshi-japan-overwork-culture/)
 
--But what is being done to decrease the rate? 
-Japan has implemented 2 policies to combat this issue. The General Principles of Suicide Prevention Policy (GPSPP) focuses on holistic approaches to suicide prevention, encompassing mental health support, public awareness campaigns, and community engagement. In contrast, the Jisatsu Taisaku Kihonn Hou, or suicide prevention law in Japan, is a legislative measure aimed at promoting early detection, intervention, and support for individuals at risk of suicide, emphasizing collaboration between healthcare, education, and government sectors. Since their implementation in 2006, suicide rates within the country have reduced. Looking at the progress made with this policy could promote the implementation of similar renditions in other countries at increasing rates.
+- But what is being done to decrease the rate? 
+Japan has implemented 2 policies to combat this issue. [The General Principles of Suicide Prevention Policy (GPSPP) focuses on holistic approaches to suicide prevention, encompassing mental health support, public awareness campaigns, and community engagement. In contrast, the Jisatsu Taisaku Kihonn Hou, or suicide prevention law in Japan, is a legislative measure aimed at promoting early detection, intervention, and support for individuals at risk of suicide, emphasizing collaboration between healthcare, education, and government sectors. Since their implementation in 2006, suicide rates within the country have reduced. Looking at the progress made with this policy could promote the implementation of similar renditions in other countries at increasing rates.](https://www.cambridge.org/core/journals/bjpsych-open/article/impact-of-the-japanese-governments-general-principles-of-suicide-prevention-policy-on-youth-suicide-from-2007-to-2022/316001A33A9A58E288369FD7C87A66AB)
 
 ### What did I learn?
 Through this comprehensive analysis of global mortality trends, several key insights have emerged:
@@ -338,16 +348,17 @@ Through this comprehensive analysis of global mortality trends, several key insi
    
 2) Regional Disparities: Disparities in causes of death exist not only between countries but also within regions. Cultural norms, policy frameworks, and access to healthcare play pivotal roles in shaping these disparities.
 
-3) Impact of Policy Interventions: Policy interventions can significantly impact mortality rates. Sri Lanka's success in reducing suicide rates post-pesticide regulation highlights the efficacy of targeted policy measures in addressing specific causes of death.
+3) Impact of Policy Interventions: Policy interventions can significantly impact mortality rates. Sri Lanka's success in reducing suicide rates post-pesticide regulation highlights the efficacy of targeted policy measures in addressing specific causes of death. 
    
 4) Need for Holistic Approaches: Addressing complex mortality trends requires holistic approaches that integrate socio-economic, cultural, and healthcare dimensions. Japan's multifaceted suicide prevention strategies exemplify the effectiveness of comprehensive interventions.
 
-5)Importance of Data Analysis: Data analysis, facilitated through SQL queries, unveils hidden trends and patterns in mortality data. The ability to manipulate and analyze large datasets empowers researchers to derive meaningful insights and inform evidence-based policy decisions.
+5) Importance of Data Analysis: Data analysis, facilitated through SQL queries, unveils hidden trends and patterns in mortality data. The ability to manipulate and analyze large datasets empowers researchers to derive meaningful insights and inform evidence-based policy decisions.
 
 ### Conclusion:
 In conclusion, this journey through global mortality trends has presented the intricate interplay of factors influencing causes of death worldwide. While progress has been made in understanding and addressing mortality disparities, persistent challenges remain. By harnessing the power of data analysis and adopting holistic approaches to public health, we can strive towards a future where preventable deaths are minimized, and well-being is prioritized across all regions and communities.
 
 - Question to the Reader: What strategies do you envision to address the underlying socio-economic and cultural determinants influencing causes of death across diverse regions?
+
 
 
 
