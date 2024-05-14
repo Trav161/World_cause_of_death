@@ -8,7 +8,7 @@
 - [Tools used](#tools-used)
 - [Data Transformation](#data-transformation)
 - [Analysis](#Analysis)
-- [What did I learn?](#What-did-I-learn?)
+- [What did I learn ?](#What-did-I-learn-?)
 - [Conclusion](#Conclusion)
 
 ### Goal of this project:
@@ -40,7 +40,7 @@ Select *
 From Cdeath
 ```
 
-I wasn't a fan of this layout. The first step was changing the ‘entity’ column to ‘Country’. In Microsoft SQL server this can be accomplished using the stored procedure function.
+I wasn't a fan of this layout. The first step was changing the "entity" column to "Country". In Microsoft SQL server this can be accomplished using the stored procedure function.
 ```sql
 EXEC sp_rename 'Cdeath.Entity', 'Country', 'column'
 ```
@@ -341,7 +341,7 @@ Here I wanted to explore Japan's suicidal rates being one of the smallest countr
 - But what is being done to decrease the rate? 
 Japan has implemented 2 policies to combat this issue. [The General Principles of Suicide Prevention Policy (GPSPP) focuses on holistic approaches to suicide prevention, encompassing mental health support, public awareness campaigns, and community engagement. In contrast, the Jisatsu Taisaku Kihonn Hou, or suicide prevention law in Japan, is a legislative measure aimed at promoting early detection, intervention, and support for individuals at risk of suicide, emphasizing collaboration between healthcare, education, and government sectors. Since their implementation in 2006, suicide rates within the country have reduced. Looking at the progress made with this policy could promote the implementation of similar renditions in other countries at increasing rates.](https://www.cambridge.org/core/journals/bjpsych-open/article/impact-of-the-japanese-governments-general-principles-of-suicide-prevention-policy-on-youth-suicide-from-2007-to-2022/316001A33A9A58E288369FD7C87A66AB)
 
-### What did I learn?
+### What did I learn ?
 Through this comprehensive analysis of global mortality trends, several key insights have emerged:
 
 1) Complexity of Mortality Dynamics: Mortality patterns are influenced by a myriad of factors, including socio-economic conditions, cultural norms, and healthcare systems. Understanding these complexities is crucial for devising effective interventions.
