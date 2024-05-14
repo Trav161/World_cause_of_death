@@ -232,7 +232,6 @@ order by TotalNumberDeaths desc
 ```sql
 Where RankNumber <= 10 and Causes LIKE '%alcohol%
 ```
-![Alcohol](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/89a81e93-54b3-44c2-be87-00db2a730b80)
 
 This allowed me to see which countries have alcohol use related deaths at a rank lower or equal to 10.
 
@@ -244,7 +243,6 @@ A pattern was emerging. I found here that there was a high prevalence of Alcohol
 ```sql
 Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
-![Drug](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/0196fa06-ce96-4ee9-9df8-d5a09c2e2fae)
 
 This allowed me to see which countries have drug use related deaths at a rank lower or equal to 15.
 
@@ -254,7 +252,6 @@ With these initial findings, It did not surprise me to the USA high on the list.
    ```sql
    Where RankNumber < 15 and Causes LIKE '%Selfharm%'
    ```
-![Selfharm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ee561199-5738-44ae-8f21-907e1fa8a2f9)
   
   This allowed me to see which countries have self harm related deaths at a rank up to 15.
 
@@ -267,7 +264,6 @@ Like many low-income countries, Suicide rates are often the result of societal i
 ```sql
 Where RankNumber >=11 and Causes LIKE '%Selfharm%'
 ```
-![Lower rank self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/b4aa8c45-9587-4d98-97fa-873b2659310c)
 
 By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. [Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178353/) Further emphasizing how culture and religion may impact mortality rates in different regions.
 
