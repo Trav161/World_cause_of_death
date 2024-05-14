@@ -8,7 +8,7 @@
 - [Tools used](#tools-used)
 - [Data Transformation](#data-transformation)
 - [Analysis](#analysis)
-- [What did I learn](#what-did-I-learn)
+- [What did I learn](#what-did-i-learn)
 - [Conclusion](#conclusion)
 
 ### Goal of this project:
