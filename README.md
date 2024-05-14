@@ -7,9 +7,9 @@
 - [Data source](#data-source)
 - [Tools used](#tools-used)
 - [Data Transformation](#data-transformation)
-- [Analysis](#Analysis)
-- [What did I learn ?](#What-did-I-learn-?)
-- [Conclusion](#Conclusion)
+- [Analysis](#analysis)
+- [What did I learn](#what-did-I-learn)
+- [Conclusion](#conclusion)
 
 ### Goal of this project:
 The primary goal was to identify and analyze the leading causes of death globally between 1990-2019. Specifically, I aimed to explore patterns and trends related to cardiovascular diseases, drug and alcohol-related deaths, and suicide rates. Additionally, I sought to understand the disparities between countries and regions, considering factors such as culture, politics, and economic conditions.
