@@ -1,2 +1,1 @@
-# World_Cause_of_Death
-Exploring causes of death around the world and trying to understand why
+# Project SQL: Deep Exploration of Global Causes of Death (1990–2019)
