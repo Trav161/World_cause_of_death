@@ -295,6 +295,7 @@ In the 1990s, Sri Lanka implemented policies that restricted the availability of
 But this doesn't tell the full story.
 
 - To gain a bigger picture let's look at this progression in neighboring countries such as India
+  
 ![India self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/4dfc1b1b-8191-484f-b958-ce51dc2c402c)
 
 In comparison to Sri Lanka, India's suicide death rate has steadily increased, boasting one of the highest rates in the world. Like Sri Lanka, economic instability, poverty, and unemployment can contribute to heightened stress levels and mental health issues, increasing the risk of suicide. To address these issues, mental health access is essential in getting people the help they need. [However, according to my research, access to mental health care is sparse, with over 75% of the population with mental health disorders not receiving treatment.](https://speakingofmedicine.plos.org/2023/05/25/mind-matters-indias-mental-health-budget-crisis/)
