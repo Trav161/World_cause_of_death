@@ -223,17 +223,20 @@ Select Country, Causes, TotalNumberDeaths,RankNumber
 from Ranked_causes
 ---Where RankNumber <= 10 and Causes LIKE '%alcohol%'
 ---Where RankNumber <= 15 and Causes like '%drug%'
----Where RankNumber < 10 and Causes LIKE '%Selfharm%' 
+---Where RankNumber <= 10 and Causes LIKE '%Selfharm%' 
 ---and Country in ('United Kingdom', 'European Region (WHO)','Scotland','England') 
 order by TotalNumberDeaths desc
 ```
+
 
 1) Alcohol use related deaths (World Ranking)
 ```sql
 Where RankNumber <= 10 and Causes LIKE '%alcohol%
 ```
+![Alcohol](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/41d7fa80-44f5-42f1-a795-07695176f73e)
 
-This allowed me to see which countries have alcohol use related deaths at a rank lower or equal to 10.
+This allows us to see which countries have alcohol related deaths between 1 -10.
+The lower the rank the higher proportion of overall deaths per country. 
 
 - This gave me the opportunity to dig deeper. Why were these countries dealing with high rates of alcohol use related deaths?
 
@@ -243,27 +246,32 @@ A pattern was emerging. I found here that there was a high prevalence of Alcohol
 ```sql
 Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
+![Drug](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/0039a4a0-ef50-48ef-8160-6ca61899e27a)
 
-This allowed me to see which countries have drug use related deaths at a rank lower or equal to 15.
+This allows us to see which countries have drug use related deaths ranked between 1–15.
 
 With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. [When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma.](https://www.sdf.org.uk/blog-poverty-is-the-root-of-scotlands-fatal-drug-overdose-crisis/) To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
 
 3) Self Harm/Suicidal related deaths (World Ranking)
    ```sql
-   Where RankNumber < 15 and Causes LIKE '%Selfharm%'
+   Where RankNumber <= 10 and Causes LIKE '%Selfharm%'
    ```
-  
-  This allowed me to see which countries have self harm related deaths at a rank up to 15.
+  ![self harm top 10](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/7fbaefae-3cb8-4c9e-b665-79d2dfd2efc9)
+
+This allows us to see which countries have self harm/suicidal related deaths ranked between 1–10.
 
 With these results I was surprised to see Sri Lanka so high on the list, thus, I needed to delve further. [Upon my research, large contributors to the suicide rates within the country were the result of pesticide self-poisoning.](https://centrepsp.org/media/news/sri-lankan-suicide-rate-stable-during-pandemic)
 
 But why is this the case? 
 Like many low-income countries, Suicide rates are often the result of societal issues such as poverty and unemployment, leading to an increase in depression/anxiety which can fuel suicidal thoughts. Rural farming communities also increase overall access to lethal pesticides. In the same article, reports suggest that there was not an increase in suicidal deaths during the pandemic. While this data set only contains results up to 2019, we are somewhat limited.
 
-- What countries have suicidal deaths in their top 10 for all deaths?
+4) What countries have a lower ranking of suicidal deaths?
 ```sql
 Where RankNumber >=11 and Causes LIKE '%Selfharm%'
 ```
+![Lower rank self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/bf8ccda5-5a9f-4940-a6c3-fd284f3941ce)
+
+This allows us to see which countries have a lower prevalence of suicidal deaths in proportion to deaths within that region. In this case, all rankings were all higher than 11.
 
 By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. [Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178353/) Further emphasizing how culture and religion may impact mortality rates in different regions.
 
@@ -281,7 +289,7 @@ Here we can see how these rates have fluctuated throughout the years. As you can
 
 - But what influenced this decrease? This made me think about the impact of policies within the country and whether they may have an effect.
   
-In the 1990s, Sri Lanka implemented policies that restricted the availability of toxic pesticides within the country which could suggest the reason in the decrease in suicidal rates in the years 2000 and onwards.
+In the 1990s, Sri Lanka implemented policies that restricted the availability of toxic pesticides within the country which could suggest the reason for the decrease in suicidal rates in the years 2000 and onwards.
 
 But this doesn't tell the full story.
 
