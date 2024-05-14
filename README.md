@@ -29,8 +29,9 @@ The downloaded csv should be named "annual-number-of-deaths-by-cause". The datas
    - [Download](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
 
 - First step will be to open the data set Microsoft Excel for easy viewing. It also allows me to see opportunities to transform and clean the data.
-
+![Excel sheet](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ce34da0d-b4f1-40b3-b95d-01d7af84c7ed)
 - Next step will be to upload the csv file into Microsoft SQL Server
+
 
 ### Data Transformation:
 Change Table name to Cdeath from "annual-number-of-deaths-by-cause": I did this to help keep my table name short and for ease of use.
@@ -39,6 +40,7 @@ So lets take a look at the data:
 Select *
 From Cdeath
 ```
+![Startup layout](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/b5be95c2-cde9-4b80-a659-0eaded946a65)
 
 I wasn't a fan of this layout. The first step was changing the "entity" column to "Country". In Microsoft SQL server this can be accomplished using the stored procedure function.
 ```sql
@@ -68,6 +70,7 @@ HeatColdExposure,Neoplasms,Conflict_terrorism,Diabetes_mellitus,KidneyDisease,Po
 Chronic_Liver_Diseases,Digestive_Diseases,Fire_heat_hot_subs,Acute_Hepatitis,Measles)
 ) as unpivottable
 ```
+![Unpivot view](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/25b4a54c-3e5c-4b9a-9dab-bb4571db2361)
 
 Now I would like to start performing analysis on this view provided from the last query. This can be accomplished by creating a temporary table with the new data layout. Remember our last unpivot function didn't edit the layout of our original dataset, it just provides us with a temporary view of the dataset. However, for the analysis we want to accomplish it would be cumbersome to write out the long unpivot function each time.
 
@@ -229,6 +232,8 @@ order by TotalNumberDeaths desc
 ```sql
 Where RankNumber <= 10 and Causes LIKE '%alcohol%
 ```
+![Alcohol](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/89a81e93-54b3-44c2-be87-00db2a730b80)
+
 This allowed me to see which countries have alcohol use related deaths at a rank lower or equal to 10.
 
 - This gave me the opportunity to dig deeper. Why were these countries dealing with high rates of alcohol use related deaths?
@@ -239,6 +244,7 @@ A pattern was emerging. I found here that there was a high prevalence of Alcohol
 ```sql
 Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
+![Drug](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/0196fa06-ce96-4ee9-9df8-d5a09c2e2fae)
 This allowed me to see which countries have drug use related deaths at a rank lower or equal to 15.
 
 With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. [When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma.](https://www.sdf.org.uk/blog-poverty-is-the-root-of-scotlands-fatal-drug-overdose-crisis/) To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
@@ -247,6 +253,7 @@ With these initial findings, It did not surprise me to the USA high on the list.
    ```sql
    Where RankNumber < 15 and Causes LIKE '%Selfharm%'
    ```
+![Selfharm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ee561199-5738-44ae-8f21-907e1fa8a2f9)
    This allowed me to see which countries have self harm related deaths at a rank lower than 15.
 
 With these results I was surprised to see Sri Lanka so high on the list, thus, I needed to delve further. [Upon my research, large contributors to the suicide rates within the country were the result of pesticide self-poisoning.](https://centrepsp.org/media/news/sri-lankan-suicide-rate-stable-during-pandemic)
@@ -258,6 +265,7 @@ Like many low-income countries, Suicide rates are often the result of societal i
 ```sql
 Where RankNumber >=11 and Causes LIKE '%Selfharm%'
 ```
+![Lower rank self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/b4aa8c45-9587-4d98-97fa-873b2659310c)
 
 By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. [Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178353/) Further emphasizing how culture and religion may impact mortality rates in different regions.
 
@@ -270,6 +278,7 @@ From
 #Cdeath1
 Where country like '%Sri%Lanka%' and Causes LIKE '%selfharm%'
 ```
+![sri lanka](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/23263505-d49e-4705-b27a-ae6527e35185)
 Here we can see how these rates have fluctuated throughout the years. As you can see there was a steep increase in suicidal deaths in the 1990s but since then, rates have decreased.
 
 - But what influenced this decrease? This made me think about the impact of policies within the country and whether they may have an effect.
@@ -279,6 +288,8 @@ In the 1990s, Sri Lanka implemented policies that restricted the availability of
 But this doesn't tell the full story.
 
 - To gain a bigger picture let's look at this progression in neighboring countries such as India
+  ![India self harm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/4dfc1b1b-8191-484f-b958-ce51dc2c402c)
+
 In comparison to Sri Lanka, India's suicide death rate has steadily increased, boasting one of the highest rates in the world. Like Sri Lanka, economic instability, poverty, and unemployment can contribute to heightened stress levels and mental health issues, increasing the risk of suicide. To address these issues, mental health access is essential in getting people the help they need. [However, according to my research, access to mental health care is sparse, with over 75% of the population with mental health disorders not receiving treatment.](https://speakingofmedicine.plos.org/2023/05/25/mind-matters-indias-mental-health-budget-crisis/)
 
 - But why is this the case?
@@ -317,13 +328,15 @@ order by DifferencefromGlobalavg DESC
 Using this script we can choose what cause of death we want to investigate with our global averages.
 
 1) Alcohol use related deaths (Global averages)
-
+![alcohol global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/48fb0d2a-f278-4680-b256-1f4172c3707a)
+![alcohol global 1](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/7c5b0f3b-d852-4ba2-945b-de183e4a1c19)
 When looking at Alcohol associated deaths, countries such as Ukraine were higher on the list which aligns with my prior research. However, I was surprised to see countries such as Nigeria so high compared to our global average.
 
 - But why is this the case? 
 [In a study, I found that the prevalence of alcohol related deaths may be attributed to its high population but also to policies that permit the consumption of illicit and locally made alcoholic beverages sold freely within the country. As a result, policy changes have been recommended such as tax increases on alcohol and reduction of advertisements.](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-019-7139-9) However, the implementation of these policies has been challenging in Nigeria. Culturally, alcohol is seen as a celebratory drink and promoted as such. Additionally, other health challenges often take precedence, which also contributes to lower allocation of funds used on alcohol policy implementation.
 
 2) Drug use related deaths (Global averages)
+![drug global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/181916e2-6ea2-4d53-b717-2781f5bae560)
 
 Here I thought it would be interesting to explore drug use related deaths in Iran, which are disproportionately higher than the global average. With this information, I was able to see that drug related deaths are higher in Iran in comparison to larger continental regions such as Latin America and the Caribbean during the same period (1990–2019).
 
@@ -335,7 +348,8 @@ Geographically, Iran borders Pakistan and Afghanistan that also have rates highe
 [Politically, Iran has placed strict laws on drug crimes, resulting in life imprisonment or death if caught with 30 grams of Heroin, Morphine, Cocaine, LSD, Methamphetamine, and other similar drugs.](https://www.hrw.org/news/2011/08/05/dont-praise-irans-war-drugs)Whilst lower amounts of funding are placed on harm reduction actions such as needle exchange programs and methadone treatment. This lack of funding could also be a contributor to the number we see today. The intersection of culture and politics in Iran shapes its approach to drug use. While cultural norms discourage substance abuse, strict political laws reflect a zero-tolerance stance. This divergence highlights the challenge of addressing drug-related issues, emphasizing the need to harmonize cultural beliefs with effective public health interventions.
 
 3) Self Harm/Suicidal related deaths (Global averages)
-   
+ ![self harm global](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/760367f4-d6ae-4598-bbfb-290baffd38ab)
+  
 Here I wanted to explore Japan's suicidal rates being one of the smallest countries on this list. According to my research, Japan have historically [honored the act of suicide](https://www.nippon.com/en/japan-topics/g02268/) in certain circumstances. [Additionally, there have been rising suicide rates among office workers and employees attributed to increased job pressures, longer work hours, and fewer holidays and sick days. This phenomenon, known as "karoshi" or "death by overwork," is prevalent in Japanese society. Alongside physical strain, mental stress from work can lead to "karojisatsu," or "overwork suicide."](https://www.wired.com/story/karoshi-japan-overwork-culture/)
 
 - But what is being done to decrease the rate? 
