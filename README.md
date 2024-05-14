@@ -245,6 +245,7 @@ A pattern was emerging. I found here that there was a high prevalence of Alcohol
 Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
 ![Drug](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/0196fa06-ce96-4ee9-9df8-d5a09c2e2fae)
+
 This allowed me to see which countries have drug use related deaths at a rank lower or equal to 15.
 
 With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. [When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma.](https://www.sdf.org.uk/blog-poverty-is-the-root-of-scotlands-fatal-drug-overdose-crisis/) To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
@@ -254,14 +255,15 @@ With these initial findings, It did not surprise me to the USA high on the list.
    Where RankNumber < 15 and Causes LIKE '%Selfharm%'
    ```
 ![Selfharm](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ee561199-5738-44ae-8f21-907e1fa8a2f9)
-   This allowed me to see which countries have self harm related deaths at a rank lower than 15.
+  
+  This allowed me to see which countries have self harm related deaths at a rank up to 15.
 
 With these results I was surprised to see Sri Lanka so high on the list, thus, I needed to delve further. [Upon my research, large contributors to the suicide rates within the country were the result of pesticide self-poisoning.](https://centrepsp.org/media/news/sri-lankan-suicide-rate-stable-during-pandemic)
 
 But why is this the case? 
 Like many low-income countries, Suicide rates are often the result of societal issues such as poverty and unemployment, leading to an increase in depression/anxiety which can fuel suicidal thoughts. Rural farming communities also increase overall access to lethal pesticides. In the same article, reports suggest that there was not an increase in suicidal deaths during the pandemic. While this data set only contains results up to 2019, we are somewhat limited.
 
-- What countries have fewer overall suicidal deaths?
+- What countries have suicidal deaths in their top 10 for all deaths?
 ```sql
 Where RankNumber >=11 and Causes LIKE '%Selfharm%'
 ```
