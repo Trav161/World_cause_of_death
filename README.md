@@ -8,7 +8,7 @@
 - [Tools used](#tools-used)
 - [Data Transformation](#data-transformation)
 - [Analysis](#analysis)
-- [What did I learn](#what-did-i-learn)
+- [What did I learn](#what-did-i-learn)
 - [Conclusion](#conclusion)
 
 ### Goal of this project:
@@ -392,6 +392,7 @@ In conclusion, this journey through global mortality trends has presented the in
 ### Contribute 
 - Question to the Reader: What strategies do you envision to address the underlying socio-economic and cultural determinants influencing causes of death across diverse regions?
 - Feel free to use to the code to utilize different skills in SQL while learning more about health.
+- Feel free to contact me if you have any questions
 
 
 
