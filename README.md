@@ -11,7 +11,7 @@
 - [What did I learn](#what-did-i-learn)
 - [Conclusion](#conclusion)
 
-### Goal of this project:
+## Goal of this project:
 ---
 The primary goal was to identify and analyze the leading causes of death globally between 1990-2019. Specifically, I aimed to explore patterns and trends related to cardiovascular diseases, drug and alcohol-related deaths, and suicide rates. Additionally, I sought to understand the disparities between countries and regions, considering factors such as culture, politics, and economic conditions.
 
@@ -20,12 +20,12 @@ The primary goal was to identify and analyze the leading causes of death globall
 3) Are there identifiable patterns or correlations between socioeconomic indicators, such as income levels or education, and mortality rates related to specific causes of death?
 4) How effective are existing public health policies and interventions in addressing mortality trends associated with alcohol and drug use, and what areas require further attention or improvement?
 
-### Data source:
+## Data source:
 ---
 [Dataset location](https://ourworldindata.org/grapher/annual-number-of-deaths-by-cause)
 The downloaded csv should be named "annual-number-of-deaths-by-cause". The dataset included information on countries,years, and the number of deaths per cause. Additional information is included on income levels, and larger regions.
 
-### Tools Used:
+## Tools Used:
 ---
 1. Microsoft Excel
 3. Microsoft SQL Server
@@ -36,7 +36,7 @@ The downloaded csv should be named "annual-number-of-deaths-by-cause". The datas
 - Next step will be to upload the csv file into Microsoft SQL Server
 
 
-### Data Transformation:
+## Data Transformation:
 ---
 Change Table name to Cdeath from "annual-number-of-deaths-by-cause": I did this to help keep my table name short and for ease of use.
 So lets take a look at the data:
@@ -122,7 +122,7 @@ From #Cdeath1
 ```
 If created successfully, you will have a saved temp table that we can apply multiple functions for our analysis.
 
-### Analysis
+## Analysis
 ---
 Let's get an overview of the data by using the distinct function we can see all of our countries in one list.
 ```sql
@@ -371,7 +371,7 @@ Here I wanted to explore Japan's suicidal rates being one of the smallest countr
 - But what is being done to decrease the rate? 
 Japan has implemented 2 policies to combat this issue. [The General Principles of Suicide Prevention Policy (GPSPP) focuses on holistic approaches to suicide prevention, encompassing mental health support, public awareness campaigns, and community engagement. In contrast, the Jisatsu Taisaku Kihonn Hou, or suicide prevention law in Japan, is a legislative measure aimed at promoting early detection, intervention, and support for individuals at risk of suicide, emphasizing collaboration between healthcare, education, and government sectors. Since their implementation in 2006, suicide rates within the country have reduced. Looking at the progress made with this policy could promote the implementation of similar renditions in other countries at increasing rates.](https://www.cambridge.org/core/journals/bjpsych-open/article/impact-of-the-japanese-governments-general-principles-of-suicide-prevention-policy-on-youth-suicide-from-2007-to-2022/316001A33A9A58E288369FD7C87A66AB)
 
-### What did I learn:
+## What did I learn:
 ---
 Through this comprehensive analysis of global mortality trends, several key insights have emerged:
 
@@ -385,11 +385,11 @@ Through this comprehensive analysis of global mortality trends, several key insi
 
 5) Importance of Data Analysis: Data analysis, facilitated through SQL queries, unveils hidden trends and patterns in mortality data. The ability to manipulate and analyze large datasets empowers researchers to derive meaningful insights and inform evidence-based policy decisions.
 
-### Conclusion:
+## Conclusion:
 ---
 In conclusion, this journey through global mortality trends has presented the intricate interplay of factors influencing causes of death worldwide. While progress has been made in understanding and addressing mortality disparities, persistent challenges remain. By harnessing the power of data analysis and adopting holistic approaches to public health, we can strive towards a future where preventable deaths are minimized, and well-being is prioritized across all regions and communities.
 
-### Contribute 
+## Contribute 
 - Question to the Reader: What strategies do you envision to address the underlying socio-economic and cultural determinants influencing causes of death across diverse regions?
 - Feel free to use to the code to utilize different skills in SQL while learning more about health.
 - Feel free to contact me if you have any questions
