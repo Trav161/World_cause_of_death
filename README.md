@@ -33,7 +33,6 @@ The downloaded csv should be named "annual-number-of-deaths-by-cause". The datas
 1. Microsoft Excel
 2. Microsoft SQL Server
    - [Download](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
-3. Tableau Public
 
 - First step will be to open the data set Microsoft Excel for easy viewing. It also allows me to see opportunities to transform and clean the data.
 ![Excel sheet](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ce34da0d-b4f1-40b3-b95d-01d7af84c7ed)
