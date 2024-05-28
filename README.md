@@ -32,7 +32,7 @@ The downloaded csv should be named "annual-number-of-deaths-by-cause". The datas
 1. Microsoft Excel
 2. Microsoft SQL Server
    - [Download](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
-3. Tableau 
+3. Tableau Public
 
 - First step will be to open the data set Microsoft Excel for easy viewing. It also allows me to see opportunities to transform and clean the data.
 ![Excel sheet](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/ce34da0d-b4f1-40b3-b95d-01d7af84c7ed)
@@ -49,12 +49,12 @@ From Cdeath
 ```
 ![Startup layout](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/b5be95c2-cde9-4b80-a659-0eaded946a65)
 
-I wasn't a fan of this layout. The first step was changing the "entity" column to "Country". In Microsoft SQL server this can be accomplished using the stored procedure function.
+ Change "Entity" column to "Country". In Microsoft SQL server this can be accomplished using the stored procedure function.
 ```sql
 EXEC sp_rename 'Cdeath.Entity', 'Country', 'column'
 ```
 
-Another way I am organizing my data is by grouping each cause of death into one column. I accomplish this using Unpivot and a Subquery function. Doing this allows me to perform aggregate functions on my data. This Unpivot will also provide us with the sums for each cause of death by the year and country. We will use this shortly to apply analysis to the data.
+Grouping each cause of death into one column. I accomplish this using Unpivot and a Subquery function. Doing this allows me to perform aggregate functions on my data. This Unpivot will also provide us with the sums for each cause of death by the year and country.
 ```sql
 SELECT Country, Year, Causes, Total_deaths
 FROM
@@ -79,7 +79,7 @@ Chronic_Liver_Diseases,Digestive_Diseases,Fire_heat_hot_subs,Acute_Hepatitis,Mea
 ```
 ![Unpivot view](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/25b4a54c-3e5c-4b9a-9dab-bb4571db2361)
 
-Now I would like to start performing analysis on this view provided from the last query. This can be accomplished by creating a temporary table with the new data layout. Remember our last unpivot function didn't edit the layout of our original dataset, it just provides us with a temporary view of the dataset. However, for the analysis we want to accomplish it would be cumbersome to write out the long unpivot function each time.
+Performing analysis on the previous query. This can be accomplished by creating a temporary table and inserting our Unpivot function. Remember our last unpivot function didn't permanently edit the layout of our original dataset, it just provides us with a temporary view of the dataset. However, for the analysis we want to accomplish it would be cumbersome to write out the long unpivot function each time.
 
 This is where temporary tables are useful.
 Here are some reasons why you should use temporary tables:
@@ -88,7 +88,12 @@ Here are some reasons why you should use temporary tables:
 - I want to perform multiple analysis using this specific view of the data
 - Quick referencing for table views
 
+  
+
 ```sql
+---One disadvantage of Temporary Tables is the need to input the function each time you end your session in Microsoft SQL Server.
+Below is the Query
+
 ---Creating temp table
 Create table #Cdeath1
 (Country varchar(255), Year nvarchar(255), Causes varchar(255), Total_deaths bigint)
@@ -118,16 +123,17 @@ Chronic_Liver_Diseases,Digestive_Diseases,Fire_heat_hot_subs,Acute_Hepatitis,Mea
 ) as unpivottable
 ```
 
-As you can see I named my temporary table #Cdeath1. The first step will be to test our temp table.
+Test temporary table
 ```sql
 Select * 
 From #Cdeath1
-```
+
 If created successfully, you will have a saved temp table that we can apply multiple functions for our analysis.
+```
 
 ## Analysis
 ---
-Let's get an overview of the data by using the distinct function we can see all of our countries in one list.
+Which countries are included in our Cause of Death dataset?
 ```sql
 Select 
 distinct(Country)
@@ -136,28 +142,15 @@ From
 where country like '%United%states%' ---- Filter by regions
 where country like '%Income%' ---- Filter by certain income
 ```
-Next, we can check the max, min, sums, and average cause of deaths. Using the Top 20 syntax to provide us with the top 20 results.
+What are the Top 10 Causes of Death for all Countries between 1990 -2019?
 ```sql
-Select Top 20
+Select Top 10,
 Causes,
 Sum(Total_deaths) as TotalNumberDeaths,
-Max(Total_deaths) as MaxDeaths,
-avg(Total_deaths) as AvgNumberofdeaths
 From
 #Cdeath1
 Group by Causes
 Order by TotalNumberDeaths desc
-```
-
-Here we can see that the highest cause of death experienced in the world between 1990 and 2019 was Cardiovascular disease. Followed by Chronic Respiratory Diseases, Respiratory Infections, Neonatal Disorder, Digestive Diseases, Diarrheal Diseases, Tuberculosis, Chronic Liver Diseases and Road injuries.
-
-- Let's look at the total number of deaths by cause for each country separately.
-```sql
-Select 
-Country, Causes, SUM(Total_deaths) AS TotalNumberDeaths
-from #Cdeath1
-group by Country, Causes
-order by TotalNumberDeaths desc
 
 --- Lets add filters by regions
 Select 
@@ -168,24 +161,19 @@ group by Country, Causes
 order by Country, TotalNumberDeaths desc
 ```
 
-Here I can see that the data in most cases is consistent that Cardiovascular diseases, have resulted in the highest number of deaths for most countries with only a few outliers. By adding the Where function, we can filter the total number of deaths for certain countries.
+Here we can see that the highest cause of death experienced in the world between 1990 and 2019 was Cardiovascular disease. Followed by Chronic Respiratory Diseases, Lower Respiratory Infections, Neonatal Disorder, Digestive Diseases, Diarrheal Diseases, Tuberculosis, Chronic Liver Diseases and Road injuries.
 
-I wanted to get a better idea of these outliers. What causes of death are prevalent in some countries but not in others? Thus, my goal here was to gauge which regions of the world are least impacted by certain causes of death eg/Cardiovascular diseases. This information could be used later to identify if a country is at risk of certain causes or the rate has risen, where it previously wasnt a big issue.
+While understanding who may be most impacted, I believe it is also helpful to see which countries are less impacted by certain causes of death? What makes them different and is there anything that can be learned.
 
- - For easier viewing, I thought it would be great to rank each cause of death for each country.
-   
+So what regions do not have Cardiovascular disease in their top 5 causes of death?
 ```sql
---- 1)Create a query to rank my causes of death by country. 
+---1)Create a query to rank my causes of death by country.
 Select Country, Causes, Sum(Total_deaths) as TotalNumberDeaths,
 Rank() Over(partition by country order by sum(total_deaths) desc) AS RankNumber
 from #cdeath1
 group by country, causes
-```
-- So what regions do not have Cardiovascular disease in their top 5 causes of death?
 
-I can use a CTE (Common table expression). This allows me to apply a one-time filter on the Ranked results.
-
-```sql
+---2) Create a CTE (Common table expression). This allows me to apply a one-time filter on the Ranked results.
 WITH Ranked_causes as 
 (
 Select Country, Causes, Sum(Total_deaths) as TotalNumberDeaths,
@@ -206,17 +194,18 @@ WHERE Country NOT IN (
 )
 ORDER BY Country, TotalNumberDeaths DESC;
 ```
-This data shows that African countries have suffered less than other countries as it relates to cardiovascular diseases. But it doesn't tell the full story. The data also suggests that several other causes of death hold priority such as Malaria, HIV/AIDS, and Diarrheal diseases.
+This data shows that African countries have suffered less than other countries as it relates to cardiovascular diseases. Of these countries were: Burkino Faso,Malawi,Nigeria, Niger, Somalia,and Cote d'Ivoire. But it doesn't tell the full story. The data also suggests that several other causes of death hold priority such as Malaria, HIV/AIDS, and Diarrheal diseases.
 
 When exploring the various causes of death per country, I became interested in 3 categories:
 1) Alcohol use
 2) Drug use
 3) Self-harm/Suicide
 
-My first goal here was to find out which specific countries have a higher death rate in relation to alcohol, drug use, and self-harm/suicidal deaths.
+My first goal here was to find out which specific countries have a higher/lower overall ranking for deaths in relation to alcohol, drug use, and self-harm/suicidal deaths.
 
-To accomplish this, I can use the ranked causes list I previously created with CTE. However, I will apply a filter to these results using my 3 categories. Below you can see how I can add these filters to find countries with higher/lower rankings. Remove --- to activate a specific filter.
+Adding Filters to previously created with CTE. 
 
+Below you can see how I can add these filters to find countries with higher/lower rankings. Remove --- to activate a specific filter.
 ```sql
 WITH Ranked_causes as 
 (
@@ -236,17 +225,15 @@ from Ranked_causes
 order by TotalNumberDeaths desc
 ```
 
-
 1) Alcohol use related deaths (World Ranking)
 ```sql
 Where RankNumber <= 10 and Causes LIKE '%alcohol%
 ```
 ![Alcohol](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/41d7fa80-44f5-42f1-a795-07695176f73e)
+This allows us to see which countries have alcohol related deaths ranked between 1 -10. The lower the rank the higher proportion of overall deaths per country. 
 
-This allows us to see which countries have alcohol related deaths between 1 -10.
-The lower the rank the higher proportion of overall deaths per country. 
-
-- This gave me the opportunity to dig deeper. Why were these countries dealing with high rates of alcohol use related deaths?
+- This gave me the opportunity to dig deeper.
+  Why were these countries dealing with high rates of alcohol use related deaths?
 
 A pattern was emerging. I found here that there was a high prevalence of Alcohol use related deaths in European countries. For example, Ukraine ranks 8 for all overall deaths between 1990–2019. As a comparison, Alcohol use disorder deaths rank as 25 for all countries during this timeframe. [This is also in support of literature which states that European countries rank amongst the highest alcohol drinkers in the world in comparison to other countries in the world.](https://www.euronews.com/health/2023/06/30/so-long-dry-january-which-country-drinks-the-most-alcohol-in-europe) Further contributing to the results and the elevated numbers.
 
@@ -255,7 +242,6 @@ A pattern was emerging. I found here that there was a high prevalence of Alcohol
 Where RankNumber <= 15 and Causes LIKE '%drug%'
 ```
 ![Drug](https://github.com/Trav161/World_Cause_of_Death/assets/169755322/0039a4a0-ef50-48ef-8160-6ca61899e27a)
-
 This allows us to see which countries have drug use related deaths ranked between 1–15.
 
 With these initial findings, It did not surprise me to the USA high on the list. However, it did surprise me to see countries within the United Kingdom with a higher ranking. One in particular is Scotland. [When gathering more data information on this, it turns out that Scotland has one of the worst drug problems in Europe. But why is this the case? According to reports, one of the biggest attributes was poverty, deprivation, and trauma.](https://www.sdf.org.uk/blog-poverty-is-the-root-of-scotlands-fatal-drug-overdose-crisis/) To further delve into this information specific drugs used could be investigated, helping to implement policies that protect others from future harm. Additionally, strategies that help the population strive out of poverty could be helpful.
@@ -284,7 +270,8 @@ This allows us to see which countries have a lower prevalence of suicidal deaths
 By altering the query to look at higher rankings we are able to see which regions have lower reported suicide deaths. [Amongst this group were the Middle east/North Africa. Research seems to support this may be due to cultural factors such as the religious practice of Islam which holds strong governance on individuals' lives.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178353/) Further emphasizing how culture and religion may impact mortality rates in different regions.
 
 - But what if we try to gain an idea of how these rates have progressed over time?
-Let's take a look at Sri Lanka's suicidal rates from 1990 and onwards
+  
+Sri Lanka's suicidal rates from 1990 onwards
 ```sql
 Select 
 *
@@ -298,7 +285,7 @@ Here we can see how these rates have fluctuated throughout the years. As you can
 
 - But what influenced this decrease? This made me think about the impact of policies within the country and whether they may have an effect.
   
-In the 1990s, Sri Lanka implemented policies that restricted the availability of toxic pesticides within the country which could suggest the reason for the decrease in suicidal rates in the years 2000 and onwards.
+In the 1990s, Sri Lanka implemented policies that restricted the availability of toxic pesticides within the country which could suggest the reason for the decrease in suicidal rates in the years 2000 onwards.
 
 But this doesn't tell the full story.
 
@@ -389,32 +376,11 @@ Through this comprehensive analysis of global mortality trends, several key insi
 5) Importance of Data Analysis: Data analysis, facilitated through SQL queries, unveils hidden trends and patterns in mortality data. The ability to manipulate and analyze large datasets empowers researchers to derive meaningful insights and inform evidence-based policy decisions.
 
 ## Conclusion:
----
 In conclusion, this journey through global mortality trends has presented the intricate interplay of factors influencing causes of death worldwide. While progress has been made in understanding and addressing mortality disparities, persistent challenges remain. By harnessing the power of data analysis and adopting holistic approaches to public health, we can strive towards a future where preventable deaths are minimized, and well-being is prioritized across all regions and communities.
 
 ## Contribute 
 - Question to the Reader: What strategies do you envision to address the underlying socio-economic and cultural determinants influencing causes of death across diverse regions?
 - Feel free to use to the code to utilize different skills in SQL while learning more about health.
 - Feel free to contact me if you have any questions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
 
 
