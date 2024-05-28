@@ -1,4 +1,6 @@
 # Project SQL: Deep Exploration of Global Causes of Death (1990–2019)
+https://medium.com/@travmoore123/project-sql-deep-exploring-global-causes-of-death-1990-2019-488b53cc5217
+
 ---
 
 ## Table of Contents
